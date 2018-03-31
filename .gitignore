@@ -1,0 +1,13 @@
+# IDEs 
+.*.swp
+
+# logs, temprary
+*.log 
+tmp/
+temp/
+*.tmp
+
+# compilation 
+*.o
+*.exe 
+
