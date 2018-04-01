@@ -11,3 +11,8 @@ temp/
 *.o
 *.exe 
 
+# archives
+*.zip
+*.gz
+*.bz2
+*.?ar 

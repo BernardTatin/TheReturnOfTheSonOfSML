@@ -13,11 +13,13 @@ open String
 
 fun main() = 
    let
-      fun processArgs []      = print "No more arguments available\n"
+      fun processArgs []      =
+         print "Hello, brave new world!\n"
        |  processArgs(x::tail) = (
-            print ("-> " ^ x ^ "\n"); 
+            print ("Hello " ^ x ^ "\n"); 
             processArgs tail
          )
    in 
       processArgs (CommandLine.arguments())
    end
+
