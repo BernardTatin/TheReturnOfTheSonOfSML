@@ -3,7 +3,7 @@
 # =================================================================
 
 PROJECT = hello
-MAIN = hello.ml 
+MAIN = hello.ml
 
 DEPS =
 

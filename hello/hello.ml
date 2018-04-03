@@ -8,18 +8,21 @@
  *    polyc -o hello hello.ml && ./hello *
  *)
 
+open Posix;
 
-open String 
+use "stdArgs.ml";
 
 fun main() = 
    let
       fun processArgs []      =
-         print "Hello, brave new world!\n"
+         (print "Hello, brave new world!\n";
+          OS.Process.exit OS.Process.success)
        |  processArgs(x::tail) = (
             print ("Hello " ^ x ^ "\n"); 
             processArgs tail
          )
    in 
-      processArgs (CommandLine.arguments())
+      ( stdArgs (CommandLine.arguments());
+        processArgs (CommandLine.arguments()))
    end
 
