@@ -6,8 +6,6 @@
  *)
 
 
-open Posix;
-
 fun stdArgs [] = 
    print("\n")
 | stdArgs("--help"::tail) =

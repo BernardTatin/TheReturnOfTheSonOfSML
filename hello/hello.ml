@@ -8,7 +8,6 @@
  *    polyc -o hello hello.ml && ./hello *
  *)
 
-open Posix;
 
 use "stdArgs.ml";
 
