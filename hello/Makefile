@@ -1,12 +1,12 @@
 # =================================================================
 # Makefile for hello
+# Distributed under terms of the MIT license.
 # =================================================================
 
 PROJECT = hello
-MAIN = hello.ml
 
-DEPS =
+DEPS = stdArgs.ml
 
-TEST_ARGS = Bernard Christine Julien Alfred Sonia
+TEST_ARGS = Bernard Christine Julien Alfred Sonia "Olga Makart"
 
 include ../mk/main.mk

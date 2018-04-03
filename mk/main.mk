@@ -1,10 +1,13 @@
 # =================================================================
 # main.mk
-# used to manage projects
+# used to manage  PolyML projects
+# Distributed under terms of the MIT license.
 # =================================================================
 
-# here, we must have PROJECT and DEPS already defined
+# here, we must have PROJECT, DEPS and TEST_ARGS already defined
 
+
+MAIN = $(PROJECT).ml
 EXE = $(PROJECT).exe 
 ARCHIVE = $(PROJECT).tar.gz
 
