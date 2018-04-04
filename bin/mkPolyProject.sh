@@ -62,7 +62,7 @@ cat > ${project}.ml << ML
  * Distributed under terms of the MIT license.
  *
  * To try it:
- *    polyc -o hello hello.ml && ./hello *
+ *    polyc -o ${project} ${project}.ml && ./${project} *
  * or, better:
  *    make test 
  *
@@ -78,7 +78,8 @@ fun main() =
             (print ("Hello " ^ x ^ "\n"); 
             processArgs tail)
    in 
-      processArgs (CommandLine.arguments())
+      (stdArgs (CommandLine.arguments());
+        processArgs (CommandLine.arguments()))
    end
 ML
 
@@ -88,3 +89,28 @@ cat > README.md << MD
 A nice project in ML
 MD
 
+cat > stdArgs.ml << ARGS
+(*
+ * stdArgs.ml
+ * Copyright (C) $(date "+%Y") ${USER} <${USER}@$(hostname -f)>
+ *
+ * Distributed under terms of the MIT license.
+ *)
+
+
+fun stdArgs [] = 
+   print("\n")
+
+| stdArgs("--help"::tail) =
+   (print "${project} [--help|--version]\n";
+    print " --help: this text\n";
+    print " --version: print version and exit\n";
+    OS.Process.exit OS.Process.success)
+
+| stdArgs("--version"::tail) =
+   (print "${project} version 0.0.0\n";
+    OS.Process.exit OS.Process.success)
+
+| stdArgs(_::tail) =
+   stdArgs tail     
+ARGS

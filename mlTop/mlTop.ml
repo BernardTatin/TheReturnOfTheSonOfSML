@@ -5,7 +5,7 @@
  * Distributed under terms of the MIT license.
  *
  * To try it:
- *    polyc -o hello hello.ml && ./hello *
+ *    polyc -o mlTop mlTop.ml && ./mlTop *
  * or, better:
  *    make test 
  *
@@ -21,5 +21,6 @@ fun main() =
             (print ("Hello " ^ x ^ "\n"); 
             processArgs tail)
    in 
-      processArgs (CommandLine.arguments())
+      (stdArgs (CommandLine.arguments());
+        processArgs (CommandLine.arguments()))
    end
