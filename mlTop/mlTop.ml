@@ -11,16 +11,33 @@
  *
  *)
 
-fun main() = 
+fun getFileLines (inFile : string) =
    let
-      fun processArgs []      =
-         (print "Hello, brave new world!\n";
-          OS.Process.exit OS.Process.success)
+      val ins = TextIO.openIn inFile
+      fun loop ins =
+         case TextIO.inputLine ins of
+            SOME line => line :: loop ins
+          | NONE      => []
+   in
+      loop ins before TextIO.closeIn ins
+   end ;
 
-       |  processArgs(x::tail) = 
-            (print ("Hello " ^ x ^ "\n"); 
-            processArgs tail)
-   in 
-      (stdArgs (CommandLine.arguments());
-        processArgs (CommandLine.arguments()))
-   end
+fun getProcFileLines (procFile : string) =
+   getFileLines ("/proc/" ^ procFile)
+
+fun showRawProcFile (label : string, procFile : string) =
+   let 
+      val lines = getProcFileLines(procFile)
+      fun loop [] = print "\n"
+       |  loop (line::tail) = 
+          (print ("  " ^ line);
+           loop tail)
+
+   in
+      (print label; loop lines)
+   end ;
+
+   
+fun main() = 
+   (showRawProcFile ("Linux version", "version");
+    showRawProcFile ("CPU", "cpuinfo"))
