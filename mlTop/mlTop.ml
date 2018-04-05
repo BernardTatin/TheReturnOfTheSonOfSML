@@ -14,5 +14,4 @@
 use "fileOps.ml";
    
 fun main() = 
-   (showRawProcFile ("Linux version", "version");
-    showRawProcFile ("CPU", "cpuinfo"))
+   showCPUs()

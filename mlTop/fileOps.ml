@@ -44,7 +44,7 @@ fun getProcFileName (procFile : string) = ("/proc/" ^ procFile)
  * note 
  *    not very useful in the actual state
  *)
-fun getProcFileLines (procFile : string) = getFileLines ("/proc/" ^ procFile)
+fun getProcFileLines (procFile : string) = getFileLines (getProcFileName procFile)
 
 (*
  * function showRawProcFile
@@ -58,12 +58,23 @@ fun showRawProcFile (label : string, procFile : string) = let
    val lines = getProcFileLines(procFile)
 
    fun loop [] = print "\n"
-    |  loop (line::tail) = 
-       (print ("  " ^ line);
-        loop tail)
+    |  loop (line::tail) = (print ("  " ^ line); loop tail)
 
 in
-   (print label; loop lines)
+   (print (label ^ ":\n"); loop lines)
 end ;
 
-
+fun showCPUs () = let 
+   val lines = getProcFileLines "cpuinfo"
+   fun isSemiColon c = c = #":"
+   fun loop [] = print "\n"
+    |  loop (line::tail) = let 
+         val tokens = String.tokens isSemiColon line
+       in 
+         if String.isPrefix "model name" line 
+         then (print (List.last tokens); loop tail)
+         else loop tail
+       end;
+in 
+   loop lines 
+end;      
