@@ -5,7 +5,7 @@
 
 PROJECT = mlTop
 
-DEPS =
+DEPS = fileOps.ml
 
 TEST_ARGS =
 
