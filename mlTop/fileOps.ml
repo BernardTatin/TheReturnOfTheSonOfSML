@@ -7,9 +7,9 @@
 
 
 (*
- * function: getFileLines 
+ * function: getFileLines
  * parameters
- *    inFile : the name of the input file 
+ *    inFile : the name of the input file
  * Return
  *    the list of all lines of the input file
  *)
@@ -28,9 +28,9 @@ end ;
  * function getProcFileName
  * parameters
  *    procfile : the name of the input file, as cpuinfo, meminfo
- * return 
+ * return
  *    the full pathname of the file as /proc/cpuinfo
- * note 
+ * note
  *    not very useful in the actual state
  *)
 fun getProcFileName (procFile : string) = ("/proc/" ^ procFile)
@@ -39,9 +39,9 @@ fun getProcFileName (procFile : string) = ("/proc/" ^ procFile)
  * function getProcFileLines
  * parameters
  *    procfile : the name of the input file, as cpuinfo, meminfo
- * return 
+ * return
  *    the list of all lines of the input file
- * note 
+ * note
  *    not very useful in the actual state
  *)
 fun getProcFileLines (procFile : string) = getFileLines (getProcFileName procFile)
@@ -51,10 +51,10 @@ fun getProcFileLines (procFile : string) = getFileLines (getProcFileName procFil
  * parameters
  *    label : a label printed before the file content,
  *    procFile : a file from /proc as cpuinfo
- * return 
- *    unit but does print the lines on stdout
+ * return
+ *    unit and prints the lines on stdout
  *)
-fun showRawProcFile (label : string, procFile : string) = let 
+fun showRawProcFile (label : string, procFile : string) = let
    val lines = getProcFileLines(procFile)
 
    fun loop [] = print "\n"
@@ -64,17 +64,24 @@ in
    (print (label ^ ":\n"); loop lines)
 end ;
 
-fun showCPUs () = let 
+(*
+ * function showCPUs
+ * parameters
+ *    NONE
+ * return
+ *    unit and prints the CPU models
+ *)
+fun showCPUs () = let
    val lines = getProcFileLines "cpuinfo"
    fun isSemiColon c = c = #":"
    fun loop [] = print "\n"
-    |  loop (line::tail) = let 
+    |  loop (line::tail) = let
          val tokens = String.tokens isSemiColon line
-       in 
-         if String.isPrefix "model name" line 
+       in
+         if String.isPrefix "model name" line
          then (print (List.last tokens); loop tail)
          else loop tail
        end;
-in 
-   loop lines 
-end;      
+in
+   loop lines
+end;
