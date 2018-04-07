@@ -31,7 +31,7 @@ end ;
  * return
  *    the full pathname of the file as /proc/cpuinfo
  * note
- *    not very useful in the actual state
+ *    not very useful in the current state
  *)
 fun getProcFileName (procFile : string) = ("/proc/" ^ procFile)
 
