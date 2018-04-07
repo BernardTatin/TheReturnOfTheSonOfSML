@@ -10,7 +10,8 @@
 
    fun loop inputHandle =
       case TextIO.inputLine inputHandle of
-         SOME line => (onLine line; loop inputHandle)
+         SOME line => (onLine (String.substring (line, 0, ((size line) - 1)));
+                        loop inputHandle)
        | NONE      => ()
 in
    loop inputHandle before TextIO.closeIn inputHandle

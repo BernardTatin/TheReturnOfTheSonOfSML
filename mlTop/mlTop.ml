@@ -25,8 +25,12 @@ fun showCPUs () = let
    fun showLine (line : string) = let
          val tokens = String.tokens isSemiColon line
        in
-         if String.isPrefix "model name" line
-         then print (List.last tokens)
+         if String.isPrefix "processor" line
+         then print ("cpu " ^ (List.last tokens))
+         else if String.isPrefix "model name" line
+         then print (" " ^ (List.last tokens))
+         else if String.isPrefix "cpu MHz" line
+         then print (" running at " ^ (List.last tokens) ^ "\n")
          else ()
        end;
 in
