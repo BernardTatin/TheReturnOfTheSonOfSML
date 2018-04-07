@@ -5,7 +5,7 @@
 
 PROJECT = mlTop
 
-DEPS = fileOps.ml
+DEPS = forEachLines.ml tools.ml
 
 TEST_ARGS =
 

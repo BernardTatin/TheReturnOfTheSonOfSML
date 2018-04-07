@@ -12,6 +12,7 @@
  *)
 
 use "forEachLines.ml";
+use "tools.ml";
 
 (*
  * function showCPUs
@@ -21,7 +22,6 @@ use "forEachLines.ml";
  *    unit and prints the CPU models
  *)
 fun showCPUs () = let
-   fun isSemiColon c = c = #":"
    fun showLine (line : string) = let
          val tokens = String.tokens isSemiColon line
        in
