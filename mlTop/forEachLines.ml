@@ -30,4 +30,6 @@ fun forEachLines (fileName : string, onLine : string -> unit) : unit = let
        | NONE      => ()
 in
    loop inputHandle before TextIO.closeIn inputHandle
-end ;
+end handle _ => 
+             ( print ("Error with `" ^ fileName ^ "' file.\n");
+             ())
