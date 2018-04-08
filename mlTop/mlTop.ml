@@ -15,6 +15,17 @@ use "forEachLines.ml";
 use "tools.ml";
 
 (*
+ * function printTitle
+ * parameters
+ *    no
+ * return
+ *    unit with side effect of printing a title
+ *)
+ fun printTitle() =
+    ( printLN "";
+      printLN ("mlTop: a small top written in polyML");
+      printLN "")
+(*
  * function showCpuLine
  * parameters
  *    line
@@ -38,10 +49,11 @@ use "tools.ml";
 
 fun main() =
     (
-     (* Linux and kernel version *)
-     forEachLines ("/proc/version_signature", printLN);
-     (* for testing purpose *)
-     forEachLines ("/proc/bad_file_name", printLN);
-     (* show all cpu main  infos *)
-     forEachLines ("/proc/cpuinfo", showCpuLine)
+      printTitle ();
+      (* Linux and kernel version *)
+      forEachLines ("/proc/version_signature", printLN);
+      (* for testing purpose *)
+      (* forEachLines ("/proc/bad_file_name", printLN); *)
+      (* show all cpu main  infos *)
+      forEachLines ("/proc/cpuinfo", showCpuLine)
     )
