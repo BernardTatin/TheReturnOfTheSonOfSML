@@ -22,7 +22,7 @@ use "tools.ml";
  *    unit and prints the CPU models
  *)
 fun showCPUs () = let
-   fun showLine (line : string) = let
+   fun showLine (line : string) : unit = let
          val tokens = String.tokens isSemiColon line
        in
          if String.isPrefix "processor" line
