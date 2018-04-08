@@ -26,7 +26,7 @@ use "tools.ml";
       printLN ("mlTop: a small top written in polyML");
       printLN "")
 (*
- * function showCpuLine
+ * function showCPULine
  * parameters
  *    line
  * return
@@ -35,7 +35,7 @@ use "tools.ml";
  * note
  *    used by a call of forEachLines
  *)
- fun showCpuLine (line : string) : unit = let
+ fun showCPULine (line : string) : unit = let
        val tokens = String.tokens isSemiColon line
      in
        if String.isPrefix "processor" line
@@ -55,5 +55,5 @@ fun main() =
       (* for testing purpose *)
       (* forEachLines ("/proc/bad_file_name", printLN); *)
       (* show all cpu main  infos *)
-      forEachLines ("/proc/cpuinfo", showCpuLine)
+      forEachLines ("/proc/cpuinfo", showCPULine)
     )
