@@ -15,34 +15,33 @@ use "forEachLines.ml";
 use "tools.ml";
 
 (*
- * function showCPUs
+ * function showCpuLine
  * parameters
- *    NONE
+ *    line
  * return
- *    unit and prints the CPU models
+ *    unit with side effect of printing (or not)
+ *    some infos about CPU
+ * note
+ *    used by a call of forEachLines
  *)
-fun showCPUs () = let
-   fun showLine (line : string) : unit = let
-         val tokens = String.tokens isSemiColon line
-       in
-         if String.isPrefix "processor" line
-         then print ("cpu " ^ (List.last tokens))
-         else if String.isPrefix "model name" line
-         then print (" " ^ (List.last tokens))
-         else if String.isPrefix "cpu MHz" line
-         then printLN (" running at " ^ (List.last tokens))
-         else ()
-       end;
-in
-   (
+ fun showCpuLine (line : string) : unit = let
+       val tokens = String.tokens isSemiColon line
+     in
+       if String.isPrefix "processor" line
+       then print ("cpu " ^ (List.last tokens))
+       else if String.isPrefix "model name" line
+       then print (" " ^ (List.last tokens))
+       else if String.isPrefix "cpu MHz" line
+       then printLN (" running at " ^ (List.last tokens))
+       else ()
+     end;
+
+fun main() =
+    (
      (* Linux and kernel version *)
      forEachLines ("/proc/version_signature", printLN);
      (* for testing purpose *)
      forEachLines ("/proc/bad_file_name", printLN);
      (* show all cpu main  infos *)
-     forEachLines ("/proc/cpuinfo", showLine)
-   )
-end;
-
-fun main() =
-   showCPUs()
+     forEachLines ("/proc/cpuinfo", showCpuLine)
+    )
