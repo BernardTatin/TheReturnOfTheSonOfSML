@@ -30,11 +30,18 @@ fun showCPUs () = let
          else if String.isPrefix "model name" line
          then print (" " ^ (List.last tokens))
          else if String.isPrefix "cpu MHz" line
-         then print (" running at " ^ (List.last tokens) ^ "\n")
+         then printLN (" running at " ^ (List.last tokens))
          else ()
        end;
 in
-   forEachLines ("/proc/cpuinfo", showLine)
+   (
+     (* Linux and kernel version *)
+     forEachLines ("/proc/version_signature", printLN);
+     (* for testing purpose *)
+     forEachLines ("/proc/bad_file_name", printLN);
+     (* show all cpu main  infos *)
+     forEachLines ("/proc/cpuinfo", showLine)
+   )
 end;
 
 fun main() =
