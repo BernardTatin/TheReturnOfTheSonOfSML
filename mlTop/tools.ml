@@ -17,3 +17,12 @@
  *    false otherwise
  *)
 fun isSemiColon c = c = #":"
+
+(*
+ * function printLN
+ * parameters
+ *    s : string, the string to print with a LF at the end
+ * return
+ *    unit and side effect is printing 's' with a line feed
+ *)
+fun printLN s = print (s ^ "\n")
