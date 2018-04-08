@@ -9,4 +9,6 @@ DEPS = forEachLines.ml tools.ml
 
 TEST_ARGS =
 
+PREFIX = ~
+
 include ../mk/main.mk

@@ -8,10 +8,10 @@
 
 
 MAIN = $(PROJECT).ml
-EXE = $(PROJECT).exe 
+EXE = $(PROJECT).exe
 ARCHIVE = $(PROJECT).tar.gz
 
-POLYML = polyc 
+POLYML = polyc
 
 all: $(EXE)
 
@@ -28,7 +28,14 @@ clean: smallclean
 archive: smallclean
 	cd ..; tar czf $(ARCHIVE) $(PROJECT)
 
+install: $(EXE)
+	mkdir -p $(PREFIX)/bin
+	cp $(EXE) $(PREFIX)/bin
+
+uninstall:
+	rm -fv $(PREFIX)/bin/$(EXE)
+
 test: $(EXE)
 	./$(EXE) $(TEST_ARGS)
 
-.PHONY: all smallclean clean archive
+.PHONY: all smallclean clean archive install

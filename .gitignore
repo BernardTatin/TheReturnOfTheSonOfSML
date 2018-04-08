@@ -1,18 +1,21 @@
-# IDEs 
+# IDEs
 .*.swp
 
-# logs, temprary
-*.log 
+# logs, temporary
+*.log
 tmp/
 temp/
 *.tmp
 
-# compilation 
+# compilation
 *.o
-*.exe 
+*.exe
 
 # archives
 *.zip
 *.gz
 *.bz2
-*.?ar 
+*.?ar
+
+# documents
+*.pdf

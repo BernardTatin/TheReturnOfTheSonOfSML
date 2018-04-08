@@ -9,12 +9,27 @@ TEST_ARGS = Bernard Christine Julien Alfred Sonia "Olga Makart"
 
 include ../mk/main.mk
 ```
+## variables
+We define these variables:
 
-We define only three variables:
+-   `PROJECT`: the name of the project (the easy one),
+-   `DEPS`: all the dependancies, _i.e._ the source files needed to make the executable,
+-   `TEST_ARGS`: the arguments of the program for a first test,
+-   `PREFIX`: the root of installation (_cf._ target `install`).
 
-- `PROJECT`: the name of the project (the easy one),
-- `DEPS`: all the dependancies, _i.e._ the source files needed to make the executable,
-- `TEST_ARGS`: the arguments of the program for a first test.
+## targets
+
+The current targets are:
+
+-   `all`: compile the sources to get the binary,
+-   `archive`: create an archive in the parent folder,
+-   `test`: run the binary with the arguments defined by `TEST_ARGS`,
+-   `install`: put the binary in `$(PREFIX)/bin`,
+-   `uninstall`: remove the binary from $(PREFIX)/bin,
+-   `smallclean`: remove the binary,
+-   `clean`: remove the binary and the archive.
+
+## more
 
 We need a source file `$(PROJECT).ml` which contains the `main` function.
 
