@@ -18,6 +18,12 @@
  *)
 fun isSemiColon c = c = #":"
 
+fun isWhite c = case c of
+    #" " => true
+  |  #"\t" => true
+  |  #"\n" => true
+  |  _ => false
+
 (*
  * function printLN
  * parameters

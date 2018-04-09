@@ -47,6 +47,11 @@ use "tools.ml";
        else ()
      end;
 
+fun showSwapUse (line : string) : unit =
+    if String.isPrefix "/swapfile" line
+    then printLN line
+    else ()
+
 fun main() =
     (
       printTitle ();
@@ -55,5 +60,6 @@ fun main() =
       (* for testing purpose *)
       (* forEachLines ("/proc/bad_file_name", printLN); *)
       (* show all cpu main  infos *)
-      forEachLines ("/proc/cpuinfo", showCPULine)
+      forEachLines ("/proc/cpuinfo", showCPULine);
+      forEachLines ("/proc/swaps", showSwapUse)
     )
