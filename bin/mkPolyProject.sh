@@ -1,20 +1,20 @@
-#!/bin/bash 
+#!/bin/bash
 
 script=$(basename $0)
 
 function doHelp() {
    local exit_code=0
-   local hasMessage=0 
+   local hasMessage=0
 
-   [ $# -ne 0 ] && exit_code=$1 && shift 
+   [ $# -ne 0 ] && exit_code=$1 && shift
    [ $# -ne 0 ] && hasMessage=1
    [ ${hasMessage} -ne 0 ] && \
       echo "ERROR: $*" 1>&2
 
    cat << DOHELP
-${script} [-h|--help] : show this text and exits 
-${script} -v|--version: show the version and exits 
-${script} projectName [title] : the project and its 
+${script} [-h|--help] : show this text and exits
+${script} -v|--version: show the version and exits
+${script} projectName [title] : the project and its
             optional title
 DOHELP
 
@@ -22,14 +22,14 @@ DOHELP
 }
 
 [ $# -eq 0 ] && doHelp
-case $1 in 
+case $1 in
    -h|--help)
       dohelp
       ;;
-   -v|--version) 
+   -v|--version)
       echo "${script} version 1.0.0"
       exit 0
-esac 
+esac
 
 project=$1 && shift
 title=$project
@@ -39,7 +39,7 @@ mkdir ${project} || doHelp 1 "Unable to create $project directory"
 
 cd $project || doHelp 1 "Unable to access $project directory"
 
-cat > Makefile << MAK 
+cat > Makefile << MAK
 # =================================================================
 # Makefile for ${project}
 # Distributed under terms of the MIT license.
@@ -54,30 +54,30 @@ TEST_ARGS =
 include ../mk/main.mk
 MAK
 
-cat > ${project}.ml << ML 
+cat > ${project}.sml << ML
 (*
- * ${project}.ml
+ * ${project}.sml
  * Copyright (C) $(date "+%Y") ${USER} <${USER}@$(hostname -f)>
  *
  * Distributed under terms of the MIT license.
  *
  * To try it:
- *    polyc -o ${project} ${project}.ml && ./${project} *
+ *    polyc -o ${project} ${project}.sml && ./${project} *
  * or, better:
- *    make test 
+ *    make test
  *
  *)
 
-fun main() = 
+fun main() =
    let
       fun processArgs []      =
          (print "Hello, brave new world!\n";
           OS.Process.exit OS.Process.success)
 
-       |  processArgs(x::tail) = 
-            (print ("Hello " ^ x ^ "\n"); 
+       |  processArgs(x::tail) =
+            (print ("Hello " ^ x ^ "\n");
             processArgs tail)
-   in 
+   in
       (stdArgs (CommandLine.arguments());
         processArgs (CommandLine.arguments()))
    end
@@ -89,16 +89,16 @@ cat > README.md << MD
 A nice project in ML
 MD
 
-cat > stdArgs.ml << ARGS
+cat > stdArgs.sml << ARGS
 (*
- * stdArgs.ml
+ * stdArgs.sml
  * Copyright (C) $(date "+%Y") ${USER} <${USER}@$(hostname -f)>
  *
  * Distributed under terms of the MIT license.
  *)
 
 
-fun stdArgs [] = 
+fun stdArgs [] =
    print("\n")
 
 | stdArgs("--help"::tail) =
@@ -112,5 +112,5 @@ fun stdArgs [] =
     OS.Process.exit OS.Process.success)
 
 | stdArgs(_::tail) =
-   stdArgs tail     
+   stdArgs tail
 ARGS
