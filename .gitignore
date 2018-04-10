@@ -1,5 +1,6 @@
 # IDEs
 .*.swp
+sml.json
 
 # logs, temporary
 *.log

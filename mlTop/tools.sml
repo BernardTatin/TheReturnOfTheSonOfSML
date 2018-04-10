@@ -9,22 +9,6 @@
  *)
 
 (*
- * function isSemiColon
- * parameters
- *    c, the char to test
- * return
- *    true if c is a semi-colon (:)
- *    false otherwise
- *)
-fun isSemiColon c = c = #":"
-
-fun isWhite c = case c of
-    #" " => true
-  |  #"\t" => true
-  |  #"\n" => true
-  |  _ => false
-
-(*
  * function printLN
  * parameters
  *    s : string, the string to print with a LF at the end
