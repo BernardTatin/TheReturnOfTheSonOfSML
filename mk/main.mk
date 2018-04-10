@@ -7,7 +7,7 @@
 # here, we must have PROJECT, DEPS and TEST_ARGS already defined
 
 
-MAIN = $(PROJECT).ml
+MAIN = $(PROJECT).sml
 EXE = $(PROJECT).exe
 ARCHIVE = $(PROJECT).tar.gz
 

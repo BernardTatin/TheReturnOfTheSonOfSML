@@ -11,8 +11,8 @@
  *
  *)
 
-use "forEachLines.ml";
-use "tools.ml";
+use "forEachLines.sml";
+use "tools.sml";
 
 (*
  * function printTitle

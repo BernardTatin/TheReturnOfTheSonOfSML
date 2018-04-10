@@ -5,7 +5,7 @@
 
 PROJECT = hello
 
-DEPS = stdArgs.ml
+DEPS = stdArgs.sml
 
 TEST_ARGS = Bernard Christine Julien Alfred Sonia "Olga Makart"
 
