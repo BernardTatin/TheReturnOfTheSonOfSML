@@ -11,9 +11,9 @@
  *
  *)
 
-use "tools.sml";
-use "stringTools.sml";
-use "forEachLines.sml";
+use "../lib/tools.sml";
+use "../lib/stringTools.sml";
+use "../lib/forEachLines.sml";
 use "../lib/counter.sml";
 
 fun main() = let
