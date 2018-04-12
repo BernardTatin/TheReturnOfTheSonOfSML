@@ -14,6 +14,7 @@
 use "tools.sml";
 use "stringTools.sml";
 use "forEachLines.sml";
+use "../lib/counter.sml";
 
 fun main() = let
   (*
@@ -54,6 +55,16 @@ fun main() = let
         ( printLN "";
           printLN ("mlTop: a small top written in polyML");
           printLN "")
+    val countValue = 5
+    val count = makeCounter (countValue)
+    fun showCPUInfos (currentCount) =
+      if currentCount = countValue
+      then (printLN "")
+      else (
+        forEachLines ("/proc/cpuinfo", showCPULine);
+        printLN "";
+        showCPUInfos (count())
+        )
 in
     (
       printTitle ();
@@ -62,9 +73,9 @@ in
       printLN "";
       (* for testing purpose *)
       (* forEachLines ("/proc/bad_file_name", printLN); *)
-      (* show all cpu main  infos *)
-      forEachLines ("/proc/cpuinfo", showCPULine);
+      forEachLines ("/proc/swaps", showSwapUse);
       printLN "";
-      forEachLines ("/proc/swaps", showSwapUse)
+      (* show all cpu main  infos *)
+      showCPUInfos (count())
     )
 end;
