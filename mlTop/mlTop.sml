@@ -56,7 +56,7 @@ fun main() = let
           Tools.printLN ("mlTop: a small top written in polyML");
           Tools.printLN "")
     fun showCPUInfos () = let
-      val countValue = 5
+      val countValue = 0
       fun actionForCPU () =
       (
         ForEachLines.forEachLines ("/proc/cpuinfo", showCPULine);

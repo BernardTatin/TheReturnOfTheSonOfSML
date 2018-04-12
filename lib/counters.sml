@@ -46,13 +46,24 @@ struct
   end;
 
   fun makeTimer(maxCount : int, seconds : int, action : unit -> unit) = let
-    val counter = makeCounterWithAction(maxCount, action)
     val tSeconds = Time.fromSeconds (Int.toLarge seconds);
-    fun getTimer() =
-      if counter() < maxCount
-      then (OS.Process.sleep tSeconds; getTimer())
-      else ()
   in
-      getTimer
+    if maxCount > 0
+    then let
+        val counter = makeCounterWithAction(maxCount, action)
+        fun getTimer() =
+          if counter() < maxCount
+          then (OS.Process.sleep tSeconds; getTimer())
+          else ()
+      in
+          getTimer
+      end
+    else let
+        fun getTimer() = (
+          action (); OS.Process.sleep tSeconds; getTimer()
+          )
+      in
+        getTimer
+      end
   end;
 end;
