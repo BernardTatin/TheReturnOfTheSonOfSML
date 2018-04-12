@@ -59,7 +59,7 @@ fun main() = let
       val countValue = 5
       fun actionForCPU () =
       (
-        forEachLines ("/proc/cpuinfo", showCPULine);
+        ForEachLines.forEachLines ("/proc/cpuinfo", showCPULine);
         Tools.printLN ""
       )
       val count = makeTimer (countValue, 1, actionForCPU)
@@ -70,11 +70,9 @@ in
     (
       printTitle ();
       (* Linux and kernel version *)
-      forEachLines ("/proc/version_signature", Tools.printLN);
+      ForEachLines.forEachLines ("/proc/version_signature", Tools.printLN);
       Tools.printLN "";
-      (* for testing purpose *)
-      (* forEachLines ("/proc/bad_file_name", Tools.printLN); *)
-      forEachLines ("/proc/swaps", showSwapUse);
+      ForEachLines.forEachLines ("/proc/swaps", showSwapUse);
       Tools.printLN "";
       (* show all cpu main  infos *)
       showCPUInfos ()
