@@ -58,13 +58,15 @@ fun main() = let
     val countValue = 5
     val count = makeCounter (countValue)
     fun showCPUInfos (currentCount) =
-      if currentCount = countValue
-      then (printLN "")
-      else (
+      (
         forEachLines ("/proc/cpuinfo", showCPULine);
         printLN "";
-        showCPUInfos (count())
-        )
+        if currentCount < countValue
+        then (OS.Process.sleep (Time.fromSeconds 1);
+          showCPUInfos (count()))
+        else
+          ()
+      )
 in
     (
       printTitle ();
