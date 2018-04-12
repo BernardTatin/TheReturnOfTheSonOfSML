@@ -5,7 +5,7 @@
 
 PROJECT = mlTop
 
-DEPS = forEachLines.sml tools.sml
+DEPS = forEachLines.sml tools.sml stringTools.sml
 
 TEST_ARGS =
 
