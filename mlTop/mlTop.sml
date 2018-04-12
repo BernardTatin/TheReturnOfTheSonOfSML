@@ -11,10 +11,10 @@
  *
  *)
 
-use "tools.sml";
-use "stringTools.sml";
-use "forEachLines.sml";
-use "../lib/counter.sml";
+use "../lib/tools.sml";
+use "../lib/stringTools.sml";
+use "../lib/forEachLines.sml";
+use "../lib/counters.sml";
 
 fun main() = let
   (*
@@ -28,21 +28,29 @@ fun main() = let
   *    used by a call of forEachLines
   *)
   fun showCPULine (line : string) : unit = let
-        val tokens = String.tokens isSemiColon line
+        val tokens = String.tokens StringTools.isSemiColon line
       in
         if String.isPrefix "processor" line
         then print ("cpu " ^ (List.last tokens))
         else if String.isPrefix "model name" line
         then print (" " ^ (List.last tokens))
         else if String.isPrefix "cpu MHz" line
-        then printLN (" running at " ^ (List.last tokens))
+        then Tools.printLN (" running at " ^ (List.last tokens))
         else ()
       end;
+
+      fun showCPUFreq (line : string) : unit = let
+            val tokens = String.tokens StringTools.isSemiColon line
+          in
+            if String.isPrefix "cpu MHz" line
+            then print (" " ^ (List.last tokens))
+            else ()
+          end;
 
   fun showSwapUse (line : string) : unit =
       if String.isPrefix "Filename" line
       then ()
-      else printLN line
+      else Tools.printLN line
 
     (*
      * function printTitle
@@ -52,17 +60,17 @@ fun main() = let
      *    unit with side effect of printing a title
      *)
     fun printTitle() =
-        ( printLN "";
-          printLN ("mlTop: a small top written in polyML");
-          printLN "")
+        ( Tools.printLN "";
+          Tools.printLN ("mlTop: a small top written in polyML");
+          Tools.printLN "")
     fun showCPUInfos () = let
-      val countValue = 5
+      val countValue = 0
       fun actionForCPU () =
       (
-        forEachLines ("/proc/cpuinfo", showCPULine);
-        printLN ""
+        ForEachLines.forEachLines ("/proc/cpuinfo", showCPUFreq);
+        Tools.printLN ""
       )
-      val count = makeTimer (countValue, 3, actionForCPU)
+      val count = Counters.makeTimer (countValue, 1, actionForCPU)
     in
       count()
     end;
@@ -70,13 +78,15 @@ in
     (
       printTitle ();
       (* Linux and kernel version *)
-      forEachLines ("/proc/version_signature", printLN);
-      printLN "";
-      (* for testing purpose *)
-      (* forEachLines ("/proc/bad_file_name", printLN); *)
-      forEachLines ("/proc/swaps", showSwapUse);
-      printLN "";
+      ForEachLines.forEachLines ("/proc/version_signature", Tools.printLN);
+      Tools.printLN "";
+      ForEachLines.forEachLines ("/proc/swaps", showSwapUse);
+      Tools.printLN "";
       (* show all cpu main  infos *)
+      ForEachLines.forEachLines ("/proc/cpuinfo", showCPULine);
+      Tools.printLN "";
+      Tools.printLN "";
+
       showCPUInfos ()
     )
 end;
