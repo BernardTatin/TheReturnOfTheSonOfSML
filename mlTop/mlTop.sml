@@ -39,6 +39,14 @@ fun main() = let
         else ()
       end;
 
+      fun showCPUFreq (line : string) : unit = let
+            val tokens = String.tokens StringTools.isSemiColon line
+          in
+            if String.isPrefix "cpu MHz" line
+            then print (" " ^ (List.last tokens))
+            else ()
+          end;
+
   fun showSwapUse (line : string) : unit =
       if String.isPrefix "Filename" line
       then ()
@@ -59,7 +67,7 @@ fun main() = let
       val countValue = 0
       fun actionForCPU () =
       (
-        ForEachLines.forEachLines ("/proc/cpuinfo", showCPULine);
+        ForEachLines.forEachLines ("/proc/cpuinfo", showCPUFreq);
         Tools.printLN ""
       )
       val count = Counters.makeTimer (countValue, 1, actionForCPU)
@@ -75,6 +83,10 @@ in
       ForEachLines.forEachLines ("/proc/swaps", showSwapUse);
       Tools.printLN "";
       (* show all cpu main  infos *)
+      ForEachLines.forEachLines ("/proc/cpuinfo", showCPULine);
+      Tools.printLN "";
+      Tools.printLN "";
+
       showCPUInfos ()
     )
 end;
