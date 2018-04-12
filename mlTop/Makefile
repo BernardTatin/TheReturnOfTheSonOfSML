@@ -6,11 +6,11 @@
 PROJECT = mlTop
 
 DEPS = \
-		../lib/forEachLines.smi \
-		../lib/tools.smi \
-		../lib/stringTools.smi \
-		../lib/counters.smi \
-		../lib/forEachLines.smi \
+		../lib/forEachLines.sig \
+		../lib/tools.sig \
+		../lib/stringTools.sig \
+		../lib/counters.sig \
+		../lib/forEachLines.sml \
 		../lib/tools.sml \
 		../lib/stringTools.sml \
 		../lib/counters.sml

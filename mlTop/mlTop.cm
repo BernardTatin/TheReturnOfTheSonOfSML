@@ -1,0 +1,13 @@
+Library
+  signature TOOLS
+  signature STRINGTOOLS
+  signature FOREACHLINES
+  signature COUNTERS
+is
+  ../lib/tools.sig
+  ../lib/stringTools.sig
+  ../lib/forEachLines.sig
+  ../lib/counters.sig
+
+  $/basis.cm
+  $/smlnj-lib.cm

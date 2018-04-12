@@ -11,15 +11,6 @@
  *
  *)
 
-use "../lib/tools.smi";
-use "../lib/tools.sml";
-use "../lib/stringTools.smi";
-use "../lib/stringTools.sml";
-use "../lib/forEachLines.smi";
-use "../lib/forEachLines.sml";
-use "../lib/counters.smi";
-use "../lib/counters.sml";
-
 (* we can use printLN without prefix Tools. *)
 open Tools
 
