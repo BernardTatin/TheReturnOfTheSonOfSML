@@ -35,14 +35,14 @@ fun main() = let
         else if String.isPrefix "model name" line
         then print (" " ^ (List.last tokens))
         else if String.isPrefix "cpu MHz" line
-        then printLN (" running at " ^ (List.last tokens))
+        then Tools.printLN (" running at " ^ (List.last tokens))
         else ()
       end;
 
   fun showSwapUse (line : string) : unit =
       if String.isPrefix "Filename" line
       then ()
-      else printLN line
+      else Tools.printLN line
 
     (*
      * function printTitle
@@ -52,17 +52,17 @@ fun main() = let
      *    unit with side effect of printing a title
      *)
     fun printTitle() =
-        ( printLN "";
-          printLN ("mlTop: a small top written in polyML");
-          printLN "")
+        ( Tools.printLN "";
+          Tools.printLN ("mlTop: a small top written in polyML");
+          Tools.printLN "")
     fun showCPUInfos () = let
       val countValue = 5
       fun actionForCPU () =
       (
         forEachLines ("/proc/cpuinfo", showCPULine);
-        printLN ""
+        Tools.printLN ""
       )
-      val count = makeTimer (countValue, 3, actionForCPU)
+      val count = makeTimer (countValue, 1, actionForCPU)
     in
       count()
     end;
@@ -70,12 +70,12 @@ in
     (
       printTitle ();
       (* Linux and kernel version *)
-      forEachLines ("/proc/version_signature", printLN);
-      printLN "";
+      forEachLines ("/proc/version_signature", Tools.printLN);
+      Tools.printLN "";
       (* for testing purpose *)
-      (* forEachLines ("/proc/bad_file_name", printLN); *)
+      (* forEachLines ("/proc/bad_file_name", Tools.printLN); *)
       forEachLines ("/proc/swaps", showSwapUse);
-      printLN "";
+      Tools.printLN "";
       (* show all cpu main  infos *)
       showCPUInfos ()
     )

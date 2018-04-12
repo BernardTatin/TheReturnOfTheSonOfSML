@@ -8,11 +8,19 @@
  * in mlTop module.
  *)
 
-(*
- * function printLN
- * parameters
- *    s : string, the string to print with a LF at the end
- * return
- *    unit and side effect is printing 's' with a line feed
- *)
-fun printLN s = print (s ^ "\n")
+signature TOOLS =
+sig
+  val printLN : string -> unit
+end;
+
+structure Tools : TOOLS =
+struct
+  (*
+   * function printLN
+   * parameters
+   *    s : string, the string to print with a LF at the end
+   * return
+   *    unit and side effect is printing 's' with a line feed
+   *)
+  fun printLN s = print (s ^ "\n")
+end;  
