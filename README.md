@@ -10,10 +10,10 @@ You need [PolyML](http://www.polyml.org), `make` and a good editor which can hig
 
 ## what to touch
 
-The project ***hello*** in the directory `hello` is the best place to start. Don't forget to read the [`Makefile`](mk/README.md) documentation.
+The project ***hello*** in the directory `hello` is the best place to start. Don't forget to read the [`Makefile`](mk/README.pdf) documentation.
 
 ## a table of content
 
-1. the [`hello project`](hello/README.md),
-2. [project management with `make`](mk/README.md).
-
+1.  the [`hello project`](hello/README.pdf), sample project with little experimentations,
+2.  the [`mlTop project`](mlTop/README.pdf), a little `top` inspired project,
+2.  [project management with `make`](mk/README.pdf).
