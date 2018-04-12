@@ -16,6 +16,9 @@ use "../lib/stringTools.sml";
 use "../lib/forEachLines.sml";
 use "../lib/counters.sml";
 
+(* we can use printLN without prefix Tools. *)
+open Tools
+
 fun main() = let
   (*
   * function showCPULine
@@ -35,7 +38,7 @@ fun main() = let
         else if String.isPrefix "model name" line
         then print (" " ^ (List.last tokens))
         else if String.isPrefix "cpu MHz" line
-        then Tools.printLN (" running at " ^ (List.last tokens))
+        then printLN (" running at " ^ (List.last tokens))
         else ()
       end;
 
@@ -50,7 +53,7 @@ fun main() = let
   fun showSwapUse (line : string) : unit =
       if String.isPrefix "Filename" line
       then ()
-      else Tools.printLN line
+      else printLN line
 
     (*
      * function printTitle
@@ -60,15 +63,15 @@ fun main() = let
      *    unit with side effect of printing a title
      *)
     fun printTitle() =
-        ( Tools.printLN "";
-          Tools.printLN ("mlTop: a small top written in polyML");
-          Tools.printLN "")
+        ( printLN "";
+          printLN ("mlTop: a small top written in polyML");
+          printLN "")
     fun showCPUInfos () = let
       val countValue = 0
       fun actionForCPU () =
       (
         ForEachLines.forEachLines ("/proc/cpuinfo", showCPUFreq);
-        Tools.printLN ""
+        printLN ""
       )
       val count = Counters.makeTimer (countValue, 1, actionForCPU)
     in
@@ -78,14 +81,14 @@ in
     (
       printTitle ();
       (* Linux and kernel version *)
-      ForEachLines.forEachLines ("/proc/version_signature", Tools.printLN);
-      Tools.printLN "";
+      ForEachLines.forEachLines ("/proc/version_signature", printLN);
+      printLN "";
       ForEachLines.forEachLines ("/proc/swaps", showSwapUse);
-      Tools.printLN "";
+      printLN "";
       (* show all cpu main  infos *)
       ForEachLines.forEachLines ("/proc/cpuinfo", showCPULine);
-      Tools.printLN "";
-      Tools.printLN "";
+      printLN "";
+      printLN "";
 
       showCPUInfos ()
     )
