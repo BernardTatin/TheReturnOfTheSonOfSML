@@ -1,5 +1,5 @@
 (*
- * tools.ml
+ * tools.sml
  * Copyright (C) 2018 bernard <bernard@bernard-LIFEBOOK-E782>
  *
  * Distributed under terms of the MIT license.
@@ -7,11 +7,6 @@
  * This module contains various functions which are useful
  * in mlTop module.
  *)
-
-signature TOOLS =
-sig
-  val printLN : string -> unit
-end;
 
 structure Tools : TOOLS =
 struct
@@ -23,4 +18,4 @@ struct
    *    unit and side effect is printing 's' with a line feed
    *)
   fun printLN s = print (s ^ "\n")
-end;  
+end;

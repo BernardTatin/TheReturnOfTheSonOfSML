@@ -5,7 +5,12 @@
 
 PROJECT = mlTop
 
-DEPS = ../lib/forEachLines.sml \
+DEPS = \
+		../lib/forEachLines.smi \
+		../lib/tools.smi \
+		../lib/stringTools.smi \
+		../lib/counters.smi \
+		../lib/forEachLines.smi \
 		../lib/tools.sml \
 		../lib/stringTools.sml \
 		../lib/counters.sml
