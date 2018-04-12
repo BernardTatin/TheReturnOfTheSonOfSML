@@ -14,7 +14,7 @@
 use "../lib/tools.sml";
 use "../lib/stringTools.sml";
 use "../lib/forEachLines.sml";
-use "../lib/counter.sml";
+use "../lib/counters.sml";
 
 fun main() = let
   (*
@@ -28,7 +28,7 @@ fun main() = let
   *    used by a call of forEachLines
   *)
   fun showCPULine (line : string) : unit = let
-        val tokens = String.tokens isSemiColon line
+        val tokens = String.tokens StringTools.isSemiColon line
       in
         if String.isPrefix "processor" line
         then print ("cpu " ^ (List.last tokens))

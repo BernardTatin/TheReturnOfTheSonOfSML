@@ -25,7 +25,7 @@ fun forEachLines (fileName : string, onLine : string -> unit) : unit = let
 
    fun loop inputHandle =
       case TextIO.inputLine inputHandle of
-         SOME line => (onLine (compressWhites line);
+         SOME line => (onLine (StringTools.compressWhites line);
                         loop inputHandle)
        | NONE      => ()
 in
