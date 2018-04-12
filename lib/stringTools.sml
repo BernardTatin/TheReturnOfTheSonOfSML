@@ -4,6 +4,7 @@ sig
   val isSemiColon : char -> bool
   val isWhite : char -> bool
   val compressWhites : string -> string
+  val stFoldr : ('a*'a->'a)-> 'a -> 'a list -> 'a
 end; (* signature STRINGTOOLS *)
 
 structure StringTools: STRINGTOOLS =
@@ -25,10 +26,14 @@ struct
     |  #"\n" => true
     |  _ => false
 
+  fun stFoldr _ b [] = b
+    | stFoldr f b (x::[]) = x
+    | stFoldr f b (x::y) = f(x, stFoldr f b y)
+
   fun compressWhites str =let
     val tokens = String.tokens isWhite str
     fun locConcat (x, y) = x ^ " " ^ y
   in
-    List.foldr locConcat "" tokens
+    stFoldr locConcat "" tokens
   end;
 end;
