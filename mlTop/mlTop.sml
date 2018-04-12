@@ -46,7 +46,7 @@ fun main() = let
             val tokens = String.tokens StringTools.isSemiColon line
           in
             if String.isPrefix "cpu MHz" line
-            then print (" " ^ (List.last tokens))
+            then print (List.last tokens)
             else ()
           end;
 
