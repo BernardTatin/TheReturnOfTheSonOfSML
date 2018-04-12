@@ -5,7 +5,10 @@
 
 PROJECT = mlTop
 
-DEPS = forEachLines.sml tools.sml stringTools.sml
+DEPS = ../lib/forEachLines.sml \
+		../lib/tools.sml \
+		../lib/stringTools.sml \
+		../lib/counters.sml
 
 TEST_ARGS =
 
