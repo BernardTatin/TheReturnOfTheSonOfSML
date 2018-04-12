@@ -56,17 +56,18 @@ fun main() = let
           printLN ("mlTop: a small top written in polyML");
           printLN "")
     val countValue = 5
-    val count = makeCounter (countValue)
+    fun actionForCPU () =
+    (
+      forEachLines ("/proc/cpuinfo", showCPULine);
+      printLN ""
+    )
+    val count = makeCounterWithAction (countValue, actionForCPU)
     fun showCPUInfos (currentCount) =
-      (
-        forEachLines ("/proc/cpuinfo", showCPULine);
-        printLN "";
         if currentCount < countValue
         then (OS.Process.sleep (Time.fromSeconds 1);
           showCPUInfos (count()))
         else
           ()
-      )
 in
     (
       printTitle ();
