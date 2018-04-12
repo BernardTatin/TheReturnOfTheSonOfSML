@@ -62,7 +62,7 @@ fun main() = let
         forEachLines ("/proc/cpuinfo", showCPULine);
         printLN ""
       )
-      val count = makeTimer (countValue, 1, actionForCPU)
+      val count = makeTimer (countValue, 3, actionForCPU)
     in
       count()
     end;

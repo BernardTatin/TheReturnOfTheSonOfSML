@@ -37,9 +37,10 @@ end;
 
 fun makeTimer(maxCount : int, seconds : int, action : unit -> unit) = let
   val counter = makeCounterWithAction(maxCount, action)
+  val tSeconds = Time.fromSeconds (Int.toLarge seconds);
   fun getTimer() =
     if counter() < maxCount
-    then (OS.Process.sleep (Time.fromSeconds 1); getTimer())
+    then (OS.Process.sleep tSeconds; getTimer())
     else ()
 in
     getTimer
