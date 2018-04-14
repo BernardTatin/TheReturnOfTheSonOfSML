@@ -9,4 +9,4 @@ $(SML_LIB)/basis/basis.mlb
 ../lib/counters.sml
 
 mlTop.sml
-main.sml
+../lib/main.sml
