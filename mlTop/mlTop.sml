@@ -11,25 +11,22 @@
  *
  *)
 
-use "../lib/tools.sml";
-use "../lib/stringTools.sml";
-use "../lib/forEachLines.sml";
-use "../lib/counters.sml";
-
 (* we can use printLN without prefix Tools. *)
 open Tools
 
 fun main() = let
+
   (*
-  * function showCPULine
-  * parameters
-  *    line
-  * return
-  *    unit with side effect of printing (or not)
-  *    some infos about CPU
-  * note
-  *    used by a call of forEachLines
-  *)
+   * function showCPULine
+   * parameters
+   *    line
+   * return
+   *    unit with side effect of printing (or not)
+   *    some infos about CPU
+   * note
+   *    used by a call of forEachLines
+   *)
+
   fun showCPULine (line : string) : unit = let
         val tokens = String.tokens StringTools.isSemiColon line
       in
@@ -55,28 +52,28 @@ fun main() = let
       then ()
       else printLN line
 
-    (*
-     * function printTitle
-     * parameters
-     *    no
-     * return
-     *    unit with side effect of printing a title
-     *)
-    fun printTitle() =
-        ( printLN "";
-          printLN ("mlTop: a small top written in polyML");
-          printLN "")
-    fun showCPUInfos () = let
-      val countValue = 0
-      fun actionForCPU () =
-      (
-        ForEachLines.forEachLines ("/proc/cpuinfo", showCPUFreq);
-        printLN ""
-      )
-      val count = Counters.makeTimer (countValue, 1, actionForCPU)
-    in
-      count()
-    end;
+  (*
+   * function printTitle
+   * parameters
+   *    no
+   * return
+   *    unit with side effect of printing a title
+   *)
+  fun printTitle() =
+      ( printLN "";
+        printLN ("mlTop: a small top written in polyML");
+        printLN "")
+  fun showCPUInfos () = let
+    val countValue = 0
+    fun actionForCPU () =
+    (
+      ForEachLines.forEachLines ("/proc/cpuinfo", showCPUFreq);
+      printLN ""
+    )
+    val count = Counters.makeTimer (countValue, 1, actionForCPU)
+  in
+    count()
+  end;
 in
     (
       printTitle ();

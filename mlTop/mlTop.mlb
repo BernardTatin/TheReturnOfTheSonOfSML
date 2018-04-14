@@ -1,0 +1,12 @@
+$(SML_LIB)/basis/basis.mlb
+../lib/tools.sig
+../lib/stringTools.sig
+../lib/forEachLines.sig
+../lib/counters.sig
+../lib/tools.sml
+../lib/stringTools.sml
+../lib/forEachLines.sml
+../lib/counters.sml
+
+mlTop.sml
+../lib/main.sml
