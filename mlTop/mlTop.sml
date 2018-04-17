@@ -39,13 +39,13 @@ fun main() = let
         else ()
       end;
 
-      fun showCPUFreq (line : string) : unit = let
-            val tokens = String.tokens StringTools.isSemiColon line
-          in
-            if String.isPrefix "cpu MHz" line
-            then print (List.last tokens)
-            else ()
-          end;
+  fun showCPUFreq (line : string) : unit = let
+        val tokens = String.tokens StringTools.isSemiColon line
+      in
+        if String.isPrefix "cpu MHz" line
+        then print (List.last tokens)
+        else ()
+      end;
 
   fun showSwapUse (line : string) : unit =
       if String.isPrefix "Filename" line
@@ -63,6 +63,7 @@ fun main() = let
       ( printLN "";
         printLN ("mlTop: a small top written in polyML");
         printLN "")
+
   fun showCPUInfos () = let
     val countValue = 0
     fun actionForCPU () =
@@ -74,6 +75,7 @@ fun main() = let
   in
     count()
   end;
+
 in
     (
       printTitle ();
