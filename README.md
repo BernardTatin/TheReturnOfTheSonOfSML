@@ -16,4 +16,4 @@ The project ***hello*** in the directory `hello` is the best place to start. Don
 
 1.  the [`hello project`](hello/README.pdf), sample project with little experimentations,
 2.  the [`mlTop project`](mlTop/README.pdf), a little `top` inspired project,
-2.  [project management with `make`](mk/README.pdf).
+3.  [project management with `make`](mk/README.pdf).
