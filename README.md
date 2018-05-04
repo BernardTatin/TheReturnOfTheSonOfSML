@@ -17,3 +17,15 @@ The project ***hello*** in the directory `hello` is the best place to start. Don
 1.  the [`hello project`](hello/README.md), sample project with little experimentations,
 2.  the [`mlTop project`](mlTop/README.md), a little `top` inspired project,
 3.  [project management with `make`](mk/README.md).
+
+# about compilers 
+
+## PolyML
+
+It's a full system with an interpreter, very useful to test and debug, and a compiler.
+
+## MLTon
+
+***MLTon*** is just a compiler. Why using another compiler? It's one of the best way to be sure of syntax quality and an easy way to understand compiling errors. It's because each compiler have it's own error messages.
+
+***MLTon*** is easy to use. Just create an `mlb` file with the list of the files used by your project and run the compiler!
