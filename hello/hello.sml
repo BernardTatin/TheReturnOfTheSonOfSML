@@ -21,10 +21,9 @@ fun main() =
           OS.Process.exit OS.Process.success)
 
        |  processArgs(x::tail) =
-            (print ("Hello " ^ x ^ "\n");
+            (print ("Hello " ^ x ^ ", you're welcome\n");
             processArgs tail)
    in
       (stdArgs (CommandLine.arguments());
         processArgs (CommandLine.arguments()))
    end
-

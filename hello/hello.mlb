@@ -4,9 +4,7 @@
  *  signatures before structures,
  *  structures : if struct A is needed in struct B, put struct A BEFORE struct B
  *)
-(*
-	$(SML_LIB)/basis/basis.mlb
- *)
+$(SML_LIB)/basis/basis.mlb
 
 ../lib/tools.sig
 ../lib/stringTools.sig
