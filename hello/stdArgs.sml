@@ -16,7 +16,7 @@ fun stdArgs [] =
     OS.Process.exit OS.Process.success)
 
 | stdArgs("--version"::tail) =
-   (print "Hello version 0.0.0\n";
+   (print "Hello version 0.1.0\n";
     OS.Process.exit OS.Process.success)
 
 | stdArgs(_::tail) =
