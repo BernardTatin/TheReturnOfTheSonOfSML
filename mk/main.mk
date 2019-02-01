@@ -1,6 +1,6 @@
 # =================================================================
 # main.mk
-# used to manage  PolyML projects
+# used to manage PolyML and mlTon projects
 # Distributed under terms of the MIT license.
 # =================================================================
 
@@ -11,38 +11,12 @@ MAIN = $(PROJECT).sml
 EXE = $(PROJECT).exe
 ARCHIVE = $(PROJECT).tar.gz
 
-POLYML = polyc
-POLDIR = polyml
-POLEXE = $(POLDIR)/$(EXE)
-
-MLTON = mlton
-MLTOPT = -verbose 1  -cc-opt -O2
-MLTDIR = mltml
-MLTEXE = $(MLTDIR)/$(EXE)
-MLTMLB = $(PROJECT).mlb
+include ../mk/poly.mk 
+include ../mk/mlton.mk 
 
 all: polexe mltexe
 
-polexe: poldir $(POLEXE)
-poldir: $(POLDIR)
-$(POLDIR):
-	mkdir -p $@
-.PHONY: polexe poldir
-
-$(POLEXE): polyMain.sml $(MAIN) $(DEPS)
-	$(POLYML) -o $@ $<
-
-mltexe: mltdir $(MLTDIR)/$(EXE)
-mltdir: $(MLTDIR)
-$(MLTDIR):
-	mkdir -p $@
-.PHONY: mltexe mltdir
-
-$(MLTEXE): $(MLTMLB) $(MAIN) $(DEPS)
-	$(MLTON) -output $@ $(MLTOPT) $<
-
-smallclean:
-	rm -fv $(POLEXE) $(MLTEXE)
+smallclean: cleanpoly cleanmlt
 
 clean: smallclean
 	rm -fv ../$(ARCHIVE)
@@ -57,11 +31,5 @@ install: $(POLYEXE)
 uninstall:
 	rm -fv $(PREFIX)/bin/$(EXE)
 
-testpoly: polexe
-	$(POLEXE) $(TEST_ARGS)
-
-testmlt: mltexe
-	$(MLTEXE) $(TEST_ARGS)
-
 .PHONY: all smallclean clean archive install
-.PHONY: testpoly testmlt
+.PHONY: testmlt
