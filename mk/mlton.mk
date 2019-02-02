@@ -9,27 +9,22 @@
 MLTON = mlton
 MLTOPT = -verbose 1  -cc-opt -O2
 MLTDIR = mltml
-MLTEXE = $(MLTDIR)/$(EXE)
+FP_EXE = $(MLTDIR)/$(EXE)
 MLTMLB = $(PROJECT).mlb
 
-mltexe: mltdir $(MLTDIR)/$(EXE)
-mltdir: $(MLTDIR)
+exe: dir $(MLTDIR)/$(EXE)
+dir: $(MLTDIR)
 $(MLTDIR):
 	mkdir -p $@
-.PHONY: mltexe mltdir
 
-$(MLTEXE): $(MLTMLB) $(MAIN) $(DEPS)
+$(FP_EXE): $(MLTMLB) $(MAIN) $(DEPS)
 	$(MLTON) -output $@ $(MLTOPT) $<
 
-cleanmlt:
-	rm -fv $(MLTEXE)
-
-.PHONY: cleanmlt
-
-testmlt: mltexe
-	$(MLTEXE) $(TEST_ARGS)
-
-.PHONY: testmlt
+cleanexe:
+	rm -fv $(FP_EXE)
 
 
+test: exe
+	$(FP_EXE) $(TEST_ARGS)
 
+.PHONY: exe dir test cleanexe

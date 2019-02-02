@@ -6,27 +6,26 @@
 
 # here, we must have PROJECT, DEPS and TEST_ARGS already defined
 
-POLYML = polyc
-POLDIR = polyml
-POLEXE = $(POLDIR)/$(EXE)
+ML = polyc
+MLOPT =
+ODIR = polyml
+FP_EXE = $(ODIR)/$(EXE)
 
-polexe: poldir $(POLEXE)
-poldir: $(POLDIR)
+exe: dir $(FP_EXE)
+dir: $(POLDIR)
 $(POLDIR):
 	mkdir -p $@
 
-.PHONY: polexe poldir
 
-$(POLEXE): polyMain.sml $(MAIN) $(DEPS)
-	$(POLYML) -o $@ $<
+$(FP_EXE): polyMain.sml $(MAIN) $(DEPS)
+	$(ML) -o $@ $<
 
-testpoly: polexe
-	$(POLEXE) $(TEST_ARGS)
+test: exe
+	$(FP_EXE) $(TEST_ARGS)
 
-.PHONY: testpoly	
 
-cleanpoly:
-	rm -fv $(POLEXE)
+cleanexe:
+	rm -fv $(FP_EXE)
 
-.PHONY: cleanpoly
 
+.PHONY: exe dir test cleanexe

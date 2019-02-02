@@ -8,5 +8,5 @@ use "../lib/forEachLines.sml";
 use "../lib/counters.sig";
 use "../lib/counters.sml";
 
-use "hello.sig";
+use "hello.sig.sml";
 use "hello.sml";

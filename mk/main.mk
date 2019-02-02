@@ -11,12 +11,17 @@ MAIN = $(PROJECT).sml
 EXE = $(PROJECT).exe
 ARCHIVE = $(PROJECT).tar.gz
 
-include ../mk/poly.mk 
+compiler ?= poly
+
+ifeq ($(compiler),poly)
+include ../mk/poly.mk
+else ifeq ($(compiler),mlton)
 include ../mk/mlton.mk 
+endif
 
-all: polexe mltexe
+all: exe
 
-smallclean: cleanpoly cleanmlt
+smallclean: cleanexe
 
 clean: smallclean
 	rm -fv ../$(ARCHIVE)
@@ -24,7 +29,7 @@ clean: smallclean
 archive: smallclean
 	cd ..; tar czf $(ARCHIVE) $(PROJECT)
 
-install: $(POLYEXE)
+install: $(FP_EXE)
 	mkdir -p $(PREFIX)/bin
 	cp $< $(PREFIX)/bin
 
@@ -32,4 +37,3 @@ uninstall:
 	rm -fv $(PREFIX)/bin/$(EXE)
 
 .PHONY: all smallclean clean archive install
-.PHONY: testmlt
