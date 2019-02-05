@@ -1,6 +1,6 @@
 # =================================================================
 # main.mk
-# used to manage  PolyML projects
+# used to manage PolyML and mlTon projects
 # Distributed under terms of the MIT license.
 # =================================================================
 
@@ -11,38 +11,17 @@ MAIN = $(PROJECT).sml
 EXE = $(PROJECT).exe
 ARCHIVE = $(PROJECT).tar.gz
 
-POLYML = polyc
-POLDIR = polyml
-POLEXE = $(POLDIR)/$(EXE)
+compiler ?= poly
 
-MLTON = mlton
-MLTOPT = -verbose 1  -cc-opt -O2
-MLTDIR = mltml
-MLTEXE = $(MLTDIR)/$(EXE)
-MLTMLB = $(PROJECT).mlb
+ifeq ($(compiler),poly)
+include ../mk/poly.mk
+else ifeq ($(compiler),mlton)
+include ../mk/mlton.mk 
+endif
 
-all: polexe mltexe
+all: exe
 
-polexe: poldir $(POLEXE)
-poldir: $(POLDIR)
-$(POLDIR):
-	mkdir -p $@
-.PHONY: polexe poldir
-
-$(POLEXE): polyMain.sml $(MAIN) $(DEPS)
-	$(POLYML) -o $@ $<
-
-mltexe: mltdir $(MLTDIR)/$(EXE)
-mltdir: $(MLTDIR)
-$(MLTDIR):
-	mkdir -p $@
-.PHONY: mltexe mltdir
-
-$(MLTEXE): $(MLTMLB) $(MAIN) $(DEPS)
-	$(MLTON) -output $@ $(MLTOPT) $<
-
-smallclean:
-	rm -fv $(POLEXE) $(MLTEXE)
+smallclean: cleanexe
 
 clean: smallclean
 	rm -fv ../$(ARCHIVE)
@@ -50,18 +29,11 @@ clean: smallclean
 archive: smallclean
 	cd ..; tar czf $(ARCHIVE) $(PROJECT)
 
-install: $(POLYEXE)
+install: $(FP_EXE)
 	mkdir -p $(PREFIX)/bin
 	cp $< $(PREFIX)/bin
 
 uninstall:
 	rm -fv $(PREFIX)/bin/$(EXE)
 
-testpoly: polexe
-	$(POLEXE) $(TEST_ARGS)
-
-testmlt: mltexe
-	$(MLTEXE) $(TEST_ARGS)
-
 .PHONY: all smallclean clean archive install
-.PHONY: testpoly testmlt

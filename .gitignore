@@ -1,6 +1,9 @@
 # IDEs
+.vim*
 .*.swp
 sml.json
+*.cuda-proj
+*.komodoproject
 
 # logs, temporary
 *.log
