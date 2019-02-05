@@ -12,8 +12,10 @@ ODIR = polyml
 FP_EXE = $(ODIR)/$(EXE)
 
 exe: dir $(FP_EXE)
-dir: $(POLDIR)
-$(POLDIR):
+
+dir: $(ODIR)
+
+$(ODIR):
 	mkdir -p $@
 
 
