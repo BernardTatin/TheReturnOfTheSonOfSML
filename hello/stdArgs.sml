@@ -6,19 +6,19 @@
  *)
 
 
-fun stdArgs [] = 
+ fun stdArgs [] = 
    print("\n")
 
-| stdArgs("--help"::tail) =
+   | stdArgs("--help"::tail) =
    (print "hello [--help|--version]\n";
     print " --help: this text\n";
     print " --version: print version and exit\n";
-    OS.Process.exit OS.Process.success)
+     OS.Process.exit OS.Process.success)
 
-| stdArgs("--version"::tail) =
+   | stdArgs("--version"::tail) =
    (print "Hello version 0.1.0\n";
     OS.Process.exit OS.Process.success)
 
-| stdArgs(_::tail) =
+   | stdArgs(_::tail) =
    stdArgs tail     
 

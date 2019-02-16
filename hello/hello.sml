@@ -12,18 +12,18 @@
  *)
 
 
-use "stdArgs.sml";
+ use "stdArgs.sml";
 
-fun main() =
+ fun main() =
    let
-      fun processArgs []      =
-         (print "Hello, brave new world!\n";
-          OS.Process.exit OS.Process.success)
+    fun processArgs []      =
+     (print "Hello, brave new world!\n";
+      OS.Process.exit OS.Process.success)
 
-       |  processArgs(x::tail) =
-            (print ("Hello " ^ x ^ ", you're welcome\n");
-            processArgs tail)
+     |  processArgs(x::tail) =
+     (print ("Hello " ^ x ^ ", you're welcome\n");
+      processArgs tail)
    in
-      (stdArgs (CommandLine.arguments());
-        processArgs (CommandLine.arguments()))
-   end
+    (stdArgs (CommandLine.arguments());
+     processArgs (CommandLine.arguments()))
+  end
