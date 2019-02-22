@@ -5,8 +5,6 @@
  * Distributed under terms of the MIT license.
  *
  * To try it:
- *    polyc -o hello hello.ml && ./hello *
- * or, better:
  *    make test
  *
  *)

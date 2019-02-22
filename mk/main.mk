@@ -11,15 +11,31 @@ MAIN = $(PROJECT).sml
 EXE = $(PROJECT).exe
 ARCHIVE = $(PROJECT).tar.gz
 
+PREFIX ?= ~
 compiler ?= poly
 
 ifeq ($(compiler),poly)
 include ../mk/poly.mk
 else ifeq ($(compiler),mlton)
-include ../mk/mlton.mk 
+include ../mk/mlton.mk
 endif
 
 all: exe
+
+help:
+	@echo "make [compiler=poly|mlton] [PREFIX=prefix_dir] [target ...]"
+	@echo "    default compiler: poly"
+	@echo "    default installation PREFIX: ~"
+	@echo "    default target: all"
+	@echo "    targets:"
+	@echo "        all: compile all"
+	@echo "        clean: clean all compilation results and archive"
+	@echo "        test: execute tests, i.e. run the application with testing arguments '$(TEST_ARGS)'"
+	@echo "        install: install binary in $(PREFIX)/bin"
+	@echo "        uninstall: remove binary in $(PREFIX)/bin"
+	@echo "        archive: create the ../$(ARCHIVE) with sources files"
+	@echo ""
+	@echo "example: make clean test"
 
 smallclean: cleanexe
 

@@ -9,6 +9,5 @@ DEPS = stdArgs.sml
 
 TEST_ARGS = Bernard Christine Julien Alfred Sonia "Olga Makart"
 
-PREFIX = ~
 
 include ../mk/main.mk
