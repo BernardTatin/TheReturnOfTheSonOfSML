@@ -4,6 +4,7 @@
 sml.json
 *.cuda-proj
 *.komodoproject
+.vscode/
 
 # logs, temporary
 *.log
