@@ -1,17 +1,15 @@
 (*
  * mlTop.mlb
  * order is VERY important:
- *  signatures before structures,
+ *  sig.smlnatures before structures,
  *  structures : if struct A is needed in struct B, put struct A BEFORE struct B
  *)
-(*
 	$(SML_LIB)/basis/basis.mlb
- *)
 
-../lib/tools.sig
-../lib/stringTools.sig
-../lib/forEachLines.sig
-../lib/counters.sig
+../lib/tools.sig.sml
+../lib/stringTools.sig.sml
+../lib/forEachLines.sig.sml
+../lib/counters.sig.sml
 
 ../lib/tools.sml
 ../lib/stringTools.sml

@@ -42,8 +42,8 @@ smallclean: cleanexe
 clean: smallclean
 	rm -fv ../$(ARCHIVE)
 
-archive: smallclean
-	cd ..; tar czf $(ARCHIVE) $(PROJECT)
+archive:
+	cd ..; tar czf $(ARCHIVE) --exclude-from=mk/tar.exclude $(PROJECT) lib mk LICENSE
 
 install: $(FP_EXE)
 	mkdir -p $(PREFIX)/bin
