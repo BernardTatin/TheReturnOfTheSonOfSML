@@ -16,6 +16,7 @@ $(SML_LIB)/basis/basis.mlb
 ../lib/forEachLines.sml
 ../lib/counters.sml
 
+stdArgs.sml
 hello.sig.sml
 hello.sml
 ../lib/main.sml

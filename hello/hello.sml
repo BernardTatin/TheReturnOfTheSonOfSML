@@ -10,7 +10,6 @@
  *)
 
 
- use "stdArgs.sml";
 
  fun main() =
    let

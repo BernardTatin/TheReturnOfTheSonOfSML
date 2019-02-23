@@ -8,5 +8,7 @@ use "../lib/forEachLines.sml";
 use "../lib/counters.sig.sml";
 use "../lib/counters.sml";
 
+use "stdArgs.sml";
+
 use "hello.sig.sml";
 use "hello.sml";
