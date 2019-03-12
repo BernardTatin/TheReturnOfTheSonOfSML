@@ -21,3 +21,4 @@ temp/
 
 # documents
 *.pdf
+.vscode/
