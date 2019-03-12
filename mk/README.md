@@ -13,7 +13,7 @@ include ../mk/main.mk
 We define these variables:
 
 -   `PROJECT`: the name of the project (the easy one),
--   `DEPS`: all the dependancies, _i.e._ the source files needed to make the executable,
+-   `DEPS`: all the dependencies, _i.e._ the source files needed to make the executable,
 -   `TEST_ARGS`: the arguments of the program for a first test,
 -   `PREFIX`: the root of installation (_cf._ target `install`).
 
