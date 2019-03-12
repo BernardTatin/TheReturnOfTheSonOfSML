@@ -1,5 +1,7 @@
 #!/bin/bash
 
+## functions and variables
+
 script=$(basename $0)
 
 function doHelp() {

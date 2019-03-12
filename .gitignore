@@ -1,6 +1,7 @@
 # IDEs
 .*.swp
 sml.json
+*.cuda-proj
 
 # logs, temporary
 *.log
