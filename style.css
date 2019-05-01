@@ -1,0 +1,41 @@
+/*
+ * style.css
+ *
+ * for Pandoc
+ */
+
+@media screen {
+    body {
+        max-width: 720px;
+    }
+}
+@media print {
+    body {
+        max-width: 85%;
+    }
+}
+
+body {
+    margin: auto;
+    font-family: "CMU Serif", serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-align: left;
+    font-family: "CMU Serif Extra", "CMU Serif", serif;
+    color: #888;
+}
+h1, h2, h3 {
+    border-bottom: 1px solid #a77;
+}
+h1, h2 {
+    font-weight:bold;
+}
+
+h3,h4,h5,h6 {
+    font-style:italic;
+}
+p, ul, ol {
+    text-align: justify;
+    padding-left: 3rem;
+}
