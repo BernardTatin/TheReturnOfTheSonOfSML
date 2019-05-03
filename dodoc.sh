@@ -12,8 +12,6 @@ do
     ddir=$(echo $fdir | sed "s!^\.!${docdir}!")
     echo "$f -> $ddir/$fname.pdf"
     mkdir -p $ddir 
-    # cp --verbose $f $ddir
-    # pandoc -f markdown -t html $f -o $ddir/$fname.pdf
-    # pandoc --standalone --css $(pwd)/style.css -f markdown -t html $f -o $ddir/$fname.html
-    pandoc --standalone --css $(pwd)/style.css -f markdown -t html $f -o $ddir/$fname.pdf
+    pandoc --standalone --css $(pwd)/style.css \
+        -f markdown -t html $f -o $ddir/$fname.pdf
 done
